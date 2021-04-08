@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } =  require('electron');
 const path = require('path');
-const isDev = require('electron-is-dev');   
+const url = require('url');
 
 let win;
 
@@ -13,8 +13,14 @@ async function createWindow() {
         }
     });
 
-    console.log(isDev)
-    const indexUrl = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
+    let indexUrl = url.format({
+        pathname: path.join(__dirname, `./build/index.html`),
+        protocol: 'file:',
+        slashes: true,
+    });
+
+    // indexUrl = "http://localhost:3000";
+
     win.loadURL(indexUrl)
 
     win.webContents.openDevTools();

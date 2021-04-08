@@ -2,7 +2,21 @@
   "name": "react-electron",
   "version": "0.1.0",
   "private": true,
-  "main": "./electron/main.js",
+  "main": "./main.js",
+  "build": {
+    "appId": "com.pritam",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "./main.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "extends":null
+  },
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
@@ -13,14 +27,12 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "e-start": "electron .",
-    "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "dist": "electron-builder",
+    "dev": "npm run build && electron .",
+    "dist": "npm run build && electron-builder",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "ebuild": "npm run build && electron ."
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
