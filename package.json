@@ -2,6 +2,7 @@
   "name": "react-electron",
   "version": "0.1.0",
   "private": true,
+  "main": "./electron/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
@@ -12,10 +13,14 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "e-start": "electron .",
+    "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "dist": "electron-builder",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ebuild": "npm run build && electron ."
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +39,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
+    "electron-is-dev": "^2.0.0",
+    "typescript": "^4.2.4",
+    "wait-on": "^5.3.0"
   }
 }
